@@ -57,7 +57,7 @@ class Query(object):
 
         >>> query.search_terms['time']  # doctest: +NORMALIZE_WHITESPACE
         Range(begin=datetime.datetime(2001, 1, 1, 0, 0, tzinfo=<UTC>), \
-        end=datetime.datetime(2002, 1, 1, 0, 0, tzinfo=<UTC>))
+        end=datetime.datetime(2002, 1, 1, 23, 59, 59, 999000, tzinfo=<UTC>))
 
         By passing in an ``index``, the search parameters will be validated as existing on the ``product``.
 
@@ -291,7 +291,7 @@ def fill_end_time(time_range):
     except IndexError:
         mins = 59
     try:
-        secs = float(break_time[5])+0.999
+        secs = int(break_time[5])+0.999
     except IndexError:
         secs = 59.999
 
