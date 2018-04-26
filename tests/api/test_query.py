@@ -24,7 +24,6 @@ from ..util import isclose
 from datacube.api.query import Query, _datetime_to_timestamp, query_group_by
 from datacube.model import Range
 
-
 def test_datetime_to_timestamp():
     assert _datetime_to_timestamp((1990, 1, 7)) == 631670400
     assert _datetime_to_timestamp(datetime.datetime(1990, 1, 7)) == 631670400
