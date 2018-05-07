@@ -20,7 +20,7 @@ midnight on 1st January, 2008 and midnight on 1st of March, 2008. Now, this
 query will return all data between midnight on 1st January, 2008 and
 23:59:59.999 on 31st of March, 2008.
 
-To specify a search time between 1st of January and 29th of February, 2008
+To specify a search time between 1st of January and 29th of February, 2008 
 (inclusive), use a search query like time=('2008-01', '2008-02'). This query
 is equivalent to using any of the following in the second time stamp:
 ('2008-02-29')
