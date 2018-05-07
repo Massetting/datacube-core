@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import imp
 import shutil
 from pathlib import Path
-
 import numpy
 import pytest
 import rasterio
