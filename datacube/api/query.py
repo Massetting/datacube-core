@@ -272,7 +272,8 @@ def last_day_of_month(year, month):
     return last_day
 
 def fill_end_time(time_range):
-    break_time = re.findall(r"[\w']+", time_range[1])
+    print('timer1=', time_range)
+    break_time = re.findall(r"[\w]+", time_range[1])
     year = int(break_time[0])
     try:
         month = int(break_time[1])
