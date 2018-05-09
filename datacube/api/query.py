@@ -276,17 +276,21 @@ def _time_to_search_dims(time_range):
                 timelist = list(time_range)
                 timelist[0], timelist[1] = timelist[0].isoformat(), timelist[0].isoformat()
                 time_range = tuple(timelist)
-            time_range = Range(_to_datetime(time_range[0]), _to_datetime(pandas.Period(time_range[1]).end_time.to_pydatetime()))
+            time_range = Range(_to_datetime(time_range[0]),
+                               _to_datetime(pandas.Period(time_range[1]).end_time.to_pydatetime()))
             if time_range[0] == time_range[1]:
                 return time_range[0]
             return time_range
 
         elif isinstance(time_range, str):
-            start_time, end_time = Range(_to_datetime(time_range), _to_datetime(pandas.Period(time_range).end_time.to_pydatetime()))
+            start_time, end_time = Range(_to_datetime(time_range),
+                                         _to_datetime(pandas.Period(time_range).end_time.to_pydatetime()))
             if start_time == end_time:
                 return start_time
             time_range = Range(start_time, end_time)
             return time_range
+        else:
+            return _to_datetime(time_range)
 
 
 def _convert_to_solar_time(utc, longitude):
