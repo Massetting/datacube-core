@@ -58,7 +58,7 @@ class Query(object):
 
         >>> query.search_terms['time']  # doctest: +NORMALIZE_WHITESPACE
         Range(begin=datetime.datetime(2001, 1, 1, 0, 0, tzinfo=<UTC>), \
-        end=datetime.datetime(2002, 1, 1, 23, 59, 59, 999000, tzinfo=<UTC>))
+        end=datetime.datetime(2002, 1, 1, 23, 59, 59, 999999, tzinfo=tzutc()))
 
         By passing in an ``index``, the search parameters will be validated as existing on the ``product``.
 
@@ -290,7 +290,12 @@ def _time_to_search_dims(time_range):
             time_range = Range(start_time, end_time)
             return time_range
         else:
-            return _to_datetime(time_range)
+            timelist = list(time_range)
+            timelist[0], timelist[1] = timelist[0].isoformat(), timelist[0].isoformat()
+            time_range = tuple(timelist)
+            time_range = Range(_to_datetime(time_range[0]),
+                               _to_datetime(pandas.Period(time_range[1]).end_time.to_pydatetime()))
+            return time_range
 
 
 def _convert_to_solar_time(utc, longitude):
