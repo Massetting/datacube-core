@@ -130,6 +130,10 @@ testdata = [
      format_test('2008-11-14T23:00', '2008-11-14T23:35:59.999999')),
     (('2008-11-10T11', '2008-11-16 14:01'),
      format_test('2008-11-10T11:00', '2008-11-16T14:01:59.999999')),
+    (datetime.datetime(2018, 1, 1),
+     format_test('2018-01-01T00:00:00', '2018-01-01T00:00:00.999999')),
+    ((datetime.datetime(2018, 1, 1), datetime.datetime(2018, 1, 31, 23, 59, 59)),
+     format_test('2018-01-01T00:00:00', '2018-01-31T23:59:59.999999')),
 ]
 
 
@@ -137,4 +141,8 @@ testdata = [
 def test_time_handling(time_param, expected):
     query = Query(time=time_param)
     assert 'time' in query.search_terms
+    query_start, query_end = query.search_terms['time']
+    expected_start, expected_end = expected
+    assert expected_start == query_start
+    assert expected_end == query_end
     assert query.search_terms['time'] == expected
