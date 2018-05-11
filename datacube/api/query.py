@@ -17,25 +17,21 @@ Storage Query and Access API module
 
 from __future__ import absolute_import, division, print_function
 
-import logging
 import datetime
-import collections
+import logging
 import warnings
-import calendar
-import re
-import pandas
 
+import collections
+import numpy as np
+import pandas
 from dateutil import tz
 from pandas import to_datetime as pandas_to_datetime
-from pypeg2 import word, attr, List, maybe_some, parse as peg_parse
-import numpy as np
 
 from ..compat import string_types, integer_types
 from ..model import Range
 from ..utils import geometry, datetime_to_seconds_since_1970
 
 _LOG = logging.getLogger(__name__)
-
 
 GroupBy = collections.namedtuple('GroupBy', ['dimension', 'group_by_func', 'units', 'sort_key'])
 
@@ -267,6 +263,7 @@ def _to_datetime(t):
         return t
 
     return pandas_to_datetime(t, utc=True, infer_datetime_format=True).to_pydatetime()
+
 
 def _time_to_search_dims(time_range):
     with warnings.catch_warnings():
