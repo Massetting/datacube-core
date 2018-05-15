@@ -18,7 +18,7 @@ Examples:
 time=('2008-01', '2008-03') previously would have returned all data between
 midnight on 1st January, 2008 and midnight on 1st of March, 2008. Now, this
 query will return all data between midnight on 1st January, 2008 and
-23:59:59.999 on 31st of March, 2008. 
+23:59:59.999 on 31st of March, 2008.
 
 To specify a search time between 1st of January and 29th of February, 2008 
 (inclusive), use a search query like time=('2008-01', '2008-02'). This query
@@ -30,11 +30,32 @@ is equivalent to using any of the following in the second time stamp:
 ('2008-02-29 23:59:59.999')
 
 
+v1.6rc2 (Maybe v1.6 proper) (?? May 2018)
+=========================================
+
+Backwards Incompatible Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- The `helpers.write_geotiff()` function has been updated to support files smaller
+  than 256x256. It also no longer supports specifying the time index. Before passing
+  data in, use `xarray_data.isel(time=<my_time_index>)`. (#277)
+
+Changes
+~~~~~~~
+
+- The masking related function ``describe_variable_flags()`` now returns a
+  pandas DataFrame by default. This will display as a table in Jupyter
+  Notebooks. (:pull:`422`)
+
+
 Bug Fixes
 ~~~~~~~~~
 
 - `.dimensions` property of a product no longer crashes when product is missing
   a `grid_spec`, instead defaults to `time,y,x`
+
+- Fix a regression in v1.6rc1 whereby it was impossible to run ``datacube ingest``
+  to create products which were defined in 1.5.5 and earlier versions of ODC. (:issue:`432`, :pull:`436`)
 
 
 
