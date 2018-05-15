@@ -12,7 +12,8 @@ Enhancements
 ~~~~~~~~~~~~
 
 When loading data, the behaviour of the time range query has changed to be
-compatible with standard Python searches (eg. time slice an xarray). Now the time range selection is inclusive of any unspecified time units.
+compatible with standard Python searches (eg. time slice an xarray).
+Now the time range selection is inclusive of any unspecified time units.
 
 Examples:
 time=('2008-01', '2008-03') previously would have returned all data between
@@ -29,6 +30,8 @@ is equivalent to using any of the following in the second time stamp:
 ('2008-02-29 23:59:59')
 ('2008-02-29 23:59:59.999')
 
+Time query supports datetime-formatted input, but the full date and time must
+be specified to get the desired behaviour.
 
 v1.6rc2 (Maybe v1.6 proper) (?? May 2018)
 =========================================
