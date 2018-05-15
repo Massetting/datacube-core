@@ -293,7 +293,7 @@ def _time_to_search_dims(time_range):
     #
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", UserWarning)
-        finish_time = pandas.Period(finish_time).end_time.to_pydatetime() 
+        finish_time = pandas.Period(finish_time).end_time.to_pydatetime()
 
     time_range = Range(_to_datetime(start_time), _to_datetime(finish_time))
 
